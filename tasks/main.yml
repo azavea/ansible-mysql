@@ -1,0 +1,12 @@
+---
+- name: Install MySQL dependencies
+  apt: pkg={{ item }} state=present
+  with_items:
+    - libmysqlclient-dev
+    - python-dev
+
+- name: Install MySQL Python dependencies
+  pip: name=mysql-python version={{ mysql_python_version }} state=present
+
+- name: Install MySQL
+  apt: pkg=mysql-server-{{ mysql_version }} state=present
